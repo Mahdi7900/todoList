@@ -2,9 +2,10 @@
 
 
 import useTaskStore from "@/app/store/taskStore";
+import {Box, Button, Typography} from "@mui/material";
 
 export default function TaskList() {
-    const { tasks, toggleComplete, deleteTask, filter, sort } = useTaskStore();
+    const {tasks, toggleComplete, deleteTask, filter, sort} = useTaskStore();
     const filteredTasks = tasks.filter((task) => {
         if (filter === "completed") return task.completed;
         if (filter === "incomplete") return !task.completed;
@@ -23,29 +24,29 @@ export default function TaskList() {
                 <li
                     key={task.id}
                     className={`p-4 border rounded ${
-                        task.completed ? "bg-green-100" : "bg-white"
+                        task.completed ? "bg-success-10" : "bg-white"
                     }`}
                 >
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <h3 className="text-lg font-bold">{task.title}</h3>
-                            <p className="text-sm text-gray-600">{task.description}</p>
-                        </div>
-                        <div className="flex space-x-2">
-                            <button
-                                onClick={() => toggleComplete(task.id)}
-                                className="text-blue-500"
-                            >
+                    <Box className="flex justify-between items-center">
+                        <Box>
+                            <Typography component={'h3'} variant={'lg_bold'}>{task.title}</Typography>
+                            <Typography variant={'sm_regular'} className="text-gray-600">{task.description}</Typography>
+                        </Box>
+                        <Box className="flex gap-4">
+                            <Button
+                                color={'primary'}
+                                size={'small'}
+                                onClick={() => toggleComplete(task.id)}>
                                 {task.completed ? "Undo" : "Complete"}
-                            </button>
-                            <button
-                                onClick={() => deleteTask(task.id)}
-                                className="text-red-500"
-                            >
+                            </Button>
+                            <Button
+                                color={'error'}
+                                size={'small'}
+                                onClick={() => deleteTask(task.id)}>
                                 Delete
-                            </button>
-                        </div>
-                    </div>
+                            </Button>
+                        </Box>
+                    </Box>
                 </li>
             ))}
         </ul>

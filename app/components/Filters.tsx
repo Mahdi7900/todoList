@@ -2,12 +2,13 @@
 
 
 import useTaskStore from "@/app/store/taskStore";
+import {Box} from "@mui/material";
 
 export default function Filter() {
     const { setFilter, setSort } = useTaskStore();
 
     return (
-        <div className="flex justify-between mb-4">
+        <Box className="flex justify-between mb-4">
             <select
                 onChange={(e) => setFilter(e.target.value as any)}
                 className="p-2 border rounded"
@@ -24,6 +25,6 @@ export default function Filter() {
                 <option value="priority">Sort by Priority</option>
                 <option value="dueDate">Sort by Due Date</option>
             </select>
-        </div>
+        </Box>
     );
 }

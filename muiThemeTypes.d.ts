@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import type {CSSProperties} from 'react';
 
 declare module '@mui/material/styles' {
     interface Palette {
@@ -231,6 +231,7 @@ declare module '@mui/material/Button' {
 
     interface ButtonPropsVariantOverrides {
         shadow: true;
+        fill: true;
     }
 }
 declare module '@mui/material/InputBase' {

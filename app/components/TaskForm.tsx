@@ -3,6 +3,7 @@
 import {FormEvent, useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import useTaskStore, {Task} from "@/app/store/taskStore";
+import {Box, Button, TextField} from "@mui/material";
 
 export default function TaskForm() {
     const [title, setTitle] = useState("");
@@ -26,21 +27,24 @@ export default function TaskForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="mb-4">
-            <input
-                type="text"
-                placeholder="Task Title"
+        <form onSubmit={handleSubmit} className="mb-4 flex flex-col gap-4">
+            <TextField
+                name={'title'}
+                label={"Task Title"}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className="w-full mb-2 p-2 border rounded"
             />
-            <textarea
-                placeholder="Task Description"
+            <TextField
+                name={'description'}
+                label={"Task Description"}
+                multiline
+                minRows={6}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 className="w-full mb-2 p-2 border rounded"
             />
-            <div className="flex justify-between items-center">
+            <Box className="flex justify-between items-center">
                 <select
                     value={priority}
                     onChange={(e) => setPriority(e.target.value as any)}
@@ -50,13 +54,13 @@ export default function TaskForm() {
                     <option value="Medium">Medium</option>
                     <option value="Low">Low</option>
                 </select>
-                <button
+                <Button
                     type="submit"
                     className="bg-blue-500 text-white px-4 py-2 rounded"
                 >
                     Add Task
-                </button>
-            </div>
+                </Button>
+            </Box>
         </form>
     );
 }
