@@ -2,8 +2,8 @@
 
 import {FormEvent, useState} from "react";
 import {v4 as uuidv4} from "uuid";
-import useTaskStore, {Task} from "@/app/store/taskStore";
-import {Box, Button, TextField} from "@mui/material";
+import useTaskStore from "@/app/store/taskStore";
+import {Box, Button, FormControl, MenuItem, Select, TextField} from "@mui/material";
 
 export default function TaskForm() {
     const [title, setTitle] = useState("");
@@ -27,7 +27,7 @@ export default function TaskForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="mb-4 flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className={"mb-4 flex flex-col gap-4"}>
             <TextField
                 name={'title'}
                 label={"Task Title"}
@@ -44,20 +44,19 @@ export default function TaskForm() {
                 onChange={(e) => setDescription(e.target.value)}
                 className="w-full mb-2 p-2 border rounded"
             />
-            <Box className="flex justify-between items-center">
-                <select
-                    value={priority}
-                    onChange={(e) => setPriority(e.target.value as any)}
-                    className="p-2 border rounded"
-                >
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
-                </select>
-                <Button
-                    type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
+            <Box className="grid grid-cols-3 gap-4 justify-items-end">
+                <FormControl fullWidth>
+                    <Select
+                        label={'priority'}
+                        value={priority}
+                        onChange={(e) => setPriority(e.target.value as any)}
+                        fullWidth>
+                        <MenuItem value="High">High</MenuItem>
+                        <MenuItem value="Medium">Medium</MenuItem>
+                        <MenuItem value="Low">Low</MenuItem>
+                    </Select>
+                </FormControl>
+                <Button type="submit" className={'col-span-2'}>
                     Add Task
                 </Button>
             </Box>

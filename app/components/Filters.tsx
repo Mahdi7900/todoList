@@ -2,29 +2,34 @@
 
 
 import useTaskStore from "@/app/store/taskStore";
-import {Box} from "@mui/material";
+import {Box, FormControl, MenuItem, Select} from "@mui/material";
 
 export default function Filter() {
-    const { setFilter, setSort } = useTaskStore();
+    const {setFilter, filter, sort, setSort} = useTaskStore();
 
     return (
-        <Box className="flex justify-between mb-4">
-            <select
-                onChange={(e) => setFilter(e.target.value as any)}
-                className="p-2 border rounded"
-            >
-                <option value="all">All</option>
-                <option value="completed">Completed</option>
-                <option value="incomplete">Incomplete</option>
-            </select>
-            <select
-                onChange={(e) => setSort(e.target.value as any)}
-                className="p-2 border rounded"
-            >
-                <option value="createdAt">Sort by Created</option>
-                <option value="priority">Sort by Priority</option>
-                <option value="dueDate">Sort by Due Date</option>
-            </select>
+        <Box className="grid grid-cols-3 mb-4">
+            <FormControl fullWidth>
+                <Select
+                    label={'filter'}
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value as any)}>
+                    <MenuItem value="all">All</MenuItem>
+                    <MenuItem value="completed">Completed</MenuItem>
+                    <MenuItem value="incomplete">Incomplete</MenuItem>
+                </Select>
+            </FormControl>
+            <FormControl fullWidth className={"col-start-3"}>
+                <Select
+                    name={'sort'}
+                    label={'sort'}
+                    value={sort}
+                    onChange={(e) => setSort(e.target.value as any)}>
+                    <MenuItem value="createdAt">Sort by Created</MenuItem>
+                    <MenuItem value="priority">Sort by Priority</MenuItem>
+                    <MenuItem value="dueDate">Sort by Due Date</MenuItem>
+                </Select>
+            </FormControl>
         </Box>
     );
 }

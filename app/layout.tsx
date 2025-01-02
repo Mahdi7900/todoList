@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import "@/styles/globals.css";
 import {ReactNode} from "react";
-import modam from "../styles/font/modam";
+import modam from "../styles/font/montserrat";
 import clsx from "clsx";
 
 
@@ -14,8 +14,8 @@ export default function RootLayout({children}: Readonly<{
     children: ReactNode
 }>) {
     return (
-        <html lang="fa">
-        <body className={clsx(modam.className, 'rtl h-full')}>
+        <html lang="En">
+        <body className={clsx(modam.className, 'h-full')}>
         {children}
         </body>
         </html>
