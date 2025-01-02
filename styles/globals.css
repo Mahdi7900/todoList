@@ -16,3 +16,23 @@ body {
     padding: 0;
     margin: 0;
 }
+
+ul li.list {
+    list-style: none;
+}
+
+ul li.list::before {
+    content: '●';
+    display: inline-block;
+    margin-right: 8px;
+}
+
+/* Add the checkmark before the content of completed list items */
+ul li.list.completed::before {
+    content: '✓';
+    display: inline-block;
+    color: green;
+    margin-right: 4px;
+    font-size: 1.25rem;
+    font-weight: 900;
+}

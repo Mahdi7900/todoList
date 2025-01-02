@@ -1,9 +1,10 @@
 "use client";
 
-import {FormEvent, useState} from "react";
+import {useState} from "react";
 import {v4 as uuidv4} from "uuid";
 import useTaskStore from "@/app/store/taskStore";
 import {Box, Button, FormControl, MenuItem, Select, TextField} from "@mui/material";
+import {Form} from "@/components/Form";
 
 export default function TaskForm() {
     const [title, setTitle] = useState("");
@@ -11,8 +12,7 @@ export default function TaskForm() {
     const [priority, setPriority] = useState<"High" | "Medium" | "Low">("Medium");
     const addTask = useTaskStore((state) => state.addTask);
 
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         if (title.trim() === "") return;
         addTask({
             id: uuidv4(),
@@ -27,7 +27,7 @@ export default function TaskForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={"mb-4 flex flex-col gap-4"}>
+        <Form onSubmit={handleSubmit} className={"mb-4 flex flex-col gap-4"}>
             <TextField
                 name={'title'}
                 label={"Task Title"}
@@ -60,6 +60,6 @@ export default function TaskForm() {
                     Add Task
                 </Button>
             </Box>
-        </form>
+        </Form>
     );
 }

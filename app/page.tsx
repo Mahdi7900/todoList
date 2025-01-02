@@ -1,10 +1,10 @@
 'use client'
 
-import TaskForm from "@/app/components/TaskForm";
-import Filter from "@/app/components/Filters";
-import TaskList from "@/app/components/TaskList";
-import {Box, Typography} from "@mui/material";
-import {ThemeChanger} from "@/app/components/ThemeChanger";
+import TaskForm from "@/components/TaskForm";
+import Filter from "@/components/Filters";
+import TaskList from "@/components/TaskList";
+import {Box, Divider, Typography} from "@mui/material";
+import {ThemeChanger} from "@/components/ThemeChanger";
 import {ThemeState, useThemeStore} from "@/theme";
 import muiTheme from "@/styles/muiTheme";
 
@@ -21,7 +21,9 @@ export default function Home() {
                         To-Do List
                     </Typography>
                     <TaskForm/>
+                    <Divider className={'!my-2'}/>
                     <Filter/>
+                    <Divider className={'!my-2'}/>
                     <TaskList/>
                 </Box>
             </Box>

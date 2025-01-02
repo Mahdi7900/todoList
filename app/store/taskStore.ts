@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import {create} from "zustand";
 
 export type Task = {
     id: string;
@@ -13,6 +13,7 @@ export type Task = {
 type TaskStore = {
     tasks: Task[];
     addTask: (task: Task) => void;
+    editTask: (id: string, task: Task) => void;
     deleteTask: (id: string) => void;
     toggleComplete: (id: string) => void;
     filter: "all" | "completed" | "incomplete";
@@ -29,14 +30,14 @@ const useTaskStore = create<TaskStore>((set, get) => {
 
     const saveState = () => {
         history.push([...get().tasks]);
-        redoStack = []; // Clear redo stack on new action
+        redoStack = [];
     };
 
     return {
         tasks: [],
         addTask: (task) => {
             saveState();
-            set((state) => ({ tasks: [...state.tasks, task] }));
+            set((state) => ({tasks: [...state.tasks, task]}));
         },
         deleteTask: (id) => {
             saveState();
@@ -48,24 +49,32 @@ const useTaskStore = create<TaskStore>((set, get) => {
             saveState();
             set((state) => ({
                 tasks: state.tasks.map((task) =>
-                    task.id === id ? { ...task, completed: !task.completed } : task
+                    task.id === id ? {...task, completed: !task.completed} : task
+                ),
+            }));
+        },
+        editTask: (id, updatedTask) => {
+            saveState();
+            set((state) => ({
+                tasks: state.tasks.map((task) =>
+                    task.id === id ? {...task, ...updatedTask} : task
                 ),
             }));
         },
         filter: "all",
-        setFilter: (filter) => set(() => ({ filter })),
+        setFilter: (filter) => set(() => ({filter})),
         sort: "createdAt",
-        setSort: (sort) => set(() => ({ sort })),
+        setSort: (sort) => set(() => ({sort})),
         undo: () => {
             if (history.length > 0) {
                 redoStack.push([...get().tasks]);
-                set(() => ({ tasks: history.pop()! }));
+                set(() => ({tasks: history.pop()!}));
             }
         },
         redo: () => {
             if (redoStack.length > 0) {
                 history.push([...get().tasks]);
-                set(() => ({ tasks: redoStack.pop()! }));
+                set(() => ({tasks: redoStack.pop()!}));
             }
         },
     };
