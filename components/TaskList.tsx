@@ -33,7 +33,7 @@ export default function TaskList() {
                         <Box className="w-full flex justify-between items-center">
                             <Box>
                                 <Typography component={'h3'} variant={'lg_bold'}>{task.title}</Typography>
-                                <Typography variant={'sm_regular'}
+                                <Typography component={'p'} variant={'sm_regular'}
                                             color={'secondary.A60'}>{task.description}</Typography>
                             </Box>
                             <Box className="flex gap-4">
