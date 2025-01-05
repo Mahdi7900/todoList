@@ -11,6 +11,7 @@ export default function Filter() {
         <Box className="grid grid-cols-3 mb-4">
             <FormControl fullWidth>
                 <Select
+                    name={'filter'}
                     label={'filter'}
                     value={filter}
                     onChange={(e) => setFilter(e.target.value as any)}>

@@ -17,9 +17,9 @@ Feature: Task Management
   Scenario: Edit a task
     Given I have a task titled "Task Title" in the task list
     When I click "Edit" for the task titled "Task Title"
-    And I update the task title to "Updated Task Title"
-    And I click "Save"
-    Then I should see "Updated Task Title" in the task list
+    And I update the task title to "Updated"
+    When I click "Save"
+    Then I should see "Updated" in the task list
 
   Scenario: Delete a task
     Given I have a task titled "Task Title" in the task list

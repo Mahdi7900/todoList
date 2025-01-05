@@ -46,14 +46,14 @@ export default function useEditTaskModal() {
             </Typography>
             <DialogContent>
                 <TextField
-                    name={'title'}
+                    name={'editTitle'}
                     label={"Task Title"}
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     className="w-full !my-2 p-2 border rounded"
                 />
                 <TextField
-                    name={'description'}
+                    name={'editDescription'}
                     label={"Task Description"}
                     multiline
                     minRows={6}
@@ -63,6 +63,7 @@ export default function useEditTaskModal() {
                 />
                 <FormControl fullWidth>
                     <Select
+                        name={'editPriority'}
                         label={'priority'}
                         value={priority}
                         className={'!my-2'}

@@ -23,7 +23,7 @@ export default function TaskList() {
 
     return (
         <Box>
-            <ul className="space-y-2 p-0">
+            <ul className="space-y-2 p-0 task-list">
                 {sortedTasks.map((task) => (
                     <li
                         key={task.id}

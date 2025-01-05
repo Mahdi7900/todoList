@@ -47,6 +47,7 @@ export default function TaskForm() {
             <Box className="grid grid-cols-3 gap-4 justify-items-end">
                 <FormControl fullWidth>
                     <Select
+                        name={'priority'}
                         label={'priority'}
                         value={priority}
                         onChange={(e) => setPriority(e.target.value as any)}
