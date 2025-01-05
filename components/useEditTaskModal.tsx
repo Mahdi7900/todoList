@@ -2,18 +2,7 @@
 
 import {useState} from "react";
 import useTaskStore, {Task} from "@/app/store/taskStore";
-import {
-    Box,
-    Button,
-    Dialog,
-    DialogContent,
-    DialogTitle,
-    FormControl,
-    MenuItem,
-    Select,
-    TextField,
-    Typography
-} from "@mui/material";
+import {Box, Button, Dialog, DialogContent, FormControl, MenuItem, Select, TextField, Typography} from "@mui/material";
 
 export default function useEditTaskModal() {
     const {editTask} = useTaskStore();
