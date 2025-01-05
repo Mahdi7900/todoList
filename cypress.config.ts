@@ -21,7 +21,7 @@ export default defineConfig({
             return config;
         },
         specPattern: "cypress/e2e/**/*.feature", // Adjust to the location of your task_management.feature files
-        stepDefinitions: 'cypress/support/step/**/*.{ts,js,tsx,jsx}',
+        stepDefinitions: 'cypress/e2e/step/**/*.{ts,js,tsx,jsx}',
         baseUrl: "http://localhost:3000",        // Replace with your app's base URL
         supportFile: false,
     },
