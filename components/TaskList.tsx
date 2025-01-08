@@ -4,6 +4,8 @@
 import useTaskStore from "@/app/store/taskStore";
 import {Box, Button, Typography} from "@mui/material";
 import useEditTaskModal from "@/components/useEditTaskModal";
+import dayjs from "dayjs";
+import React from "react";
 
 export default function TaskList() {
     const {tasks, toggleComplete, deleteTask, filter, sort} = useTaskStore();
@@ -35,6 +37,15 @@ export default function TaskList() {
                                 <Typography component={'h3'} variant={'lg_bold'}>{task.title}</Typography>
                                 <Typography component={'p'} variant={'sm_regular'}
                                             color={'secondary.A60'}>{task.description}</Typography>
+                                {task.dueDate && (
+                                    <Typography
+                                        variant="sm_regular"
+                                        color="secondary.A80"
+                                        className="due-date"
+                                    >
+                                        Due: {dayjs(task.dueDate).format("YYYY-MM-DD")}
+                                    </Typography>
+                                )}
                             </Box>
                             <Box className="flex gap-4">
                                 <Button

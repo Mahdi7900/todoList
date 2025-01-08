@@ -9,6 +9,7 @@ import {Form} from "@/components/Form";
 export default function TaskForm() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [dueDate, setDueDate] = useState("");
     const [priority, setPriority] = useState<"High" | "Medium" | "Low">("Medium");
     const addTask = useTaskStore((state) => state.addTask);
 
@@ -19,6 +20,7 @@ export default function TaskForm() {
             title,
             description,
             completed: false,
+            dueDate,
             priority,
             createdAt: new Date().toISOString(),
         });
@@ -42,6 +44,13 @@ export default function TaskForm() {
                 minRows={6}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                className="w-full mb-2 p-2 border rounded"
+            />
+            <TextField
+                name={'dueDate'}
+                label={"Due date"}
+                value={dueDate}
+                onChange={(e) => setDueDate(e.target.value)}
                 className="w-full mb-2 p-2 border rounded"
             />
             <Box className="grid grid-cols-3 gap-4 justify-items-end">
